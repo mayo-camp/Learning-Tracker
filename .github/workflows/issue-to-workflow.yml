@@ -1,4 +1,4 @@
-name: Create workflow memo from Issue
+name: Create workflow from Issue
 
 on:
   issues:
@@ -35,5 +35,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add workflows/
-          git commit -m "Add workflow memo: ${{ steps.vars.outputs.title }}"
+          git commit -m "Add workflow: ${{ steps.vars.outputs.title }}"
           git push

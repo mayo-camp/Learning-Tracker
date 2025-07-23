@@ -1,4 +1,4 @@
-name: Create tech-memo from Issue
+name: Create error report from Issue
 
 on:
   issues:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   generate-md:
-    if: contains(github.event.issue.labels.*.name, 'tech-term')
+    if: contains(github.event.issue.labels.*.name, 'error-log')
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,6 @@ jobs:
         id: vars
         run: |
           RAW_TITLE="${{ github.event.issue.title }}"
-          # タイトルのプレフィックス除去例: "[用語] useRef" → "useRef"
           TITLE=$(echo "$RAW_TITLE" | sed -E 's/^\[.*\]\s*//')
           SAFE_TITLE=$(echo "$TITLE" | tr ' ' '_' | tr -cd '[:alnum:]_-')
           echo "title=$TITLE" >> $GITHUB_OUTPUT
@@ -25,8 +24,8 @@ jobs:
 
       - name: Create markdown file
         run: |
-          mkdir -p tech-memo
-          FILE="tech-memo/${{ steps.vars.outputs.safe_title }}.md"
+          mkdir -p error-report
+          FILE="error-report/${{ steps.vars.outputs.safe_title }}.md"
           echo "# ${{ steps.vars.outputs.title }}" > "$FILE"
           echo "" >> "$FILE"
           echo "${{ github.event.issue.body }}" >> "$FILE"
@@ -35,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add tech-memo/
-          git commit -m "Add tech memo: ${{ steps.vars.outputs.title }}"
+          git add error-report/
+          git commit -m "Add error report: ${{ steps.vars.outputs.title }}"
           git push
