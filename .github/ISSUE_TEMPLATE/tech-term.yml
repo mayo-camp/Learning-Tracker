@@ -49,4 +49,4 @@ body:
   - type: input
     attributes:
       label: 🏷 タグ
-      description: `#React #CI_CD` のようにスペース区切りで記述
+      description: "#React #CI_CD" のようにスペース区切りで記述
