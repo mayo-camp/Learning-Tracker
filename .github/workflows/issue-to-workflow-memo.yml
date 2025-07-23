@@ -1,0 +1,39 @@
+name: Create workflow memo from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  generate-md:
+    if: contains(github.event.issue.labels.*.name, 'workflow')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set variables
+        id: vars
+        run: |
+          RAW_TITLE="${{ github.event.issue.title }}"
+          TITLE=$(echo "$RAW_TITLE" | sed -E 's/^\[.*\]\s*//')
+          SAFE_TITLE=$(echo "$TITLE" | tr ' ' '_' | tr -cd '[:alnum:]_-')
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "safe_title=$SAFE_TITLE" >> $GITHUB_OUTPUT
+
+      - name: Create markdown file
+        run: |
+          mkdir -p workflows
+          FILE="workflows/${{ steps.vars.outputs.safe_title }}.md"
+          echo "# ${{ steps.vars.outputs.title }}" > "$FILE"
+          echo "" >> "$FILE"
+          echo "${{ github.event.issue.body }}" >> "$FILE"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add workflows/
+          git commit -m "Add workflow memo: ${{ steps.vars.outputs.title }}"
+          git push
