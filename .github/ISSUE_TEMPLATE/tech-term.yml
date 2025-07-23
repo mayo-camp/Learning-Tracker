@@ -1,0 +1,52 @@
+name: 技術用語テンプレート
+description: 技術用語・API・ワークフローなどの知識を記録します
+title: '[用語] '
+labels: [tech-term]
+assignees: [mayo-camp]
+body:
+  - type: textarea
+    attributes:
+      label: 📝 概要
+      description: この用語や技術の簡潔な説明を記載してください
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: 💻 言語
+      placeholder: JavaScript, TypeScript, YAML など
+
+  - type: textarea
+    attributes:
+      label: 🎯 使い所
+      description: どのような場面で使うか記述してください
+
+  - type: textarea
+    attributes:
+      label: 🛠 使用方法
+      description: 簡単な使い方・コード例があれば記述してください
+      placeholder: |
+        ```js
+        const ref = useRef(null);
+        ref.current.focus();
+        ```
+  
+  - type: textarea
+    attributes:
+      label: ✅ メリット
+      description: 利点・強みなどを列挙してください
+
+  - type: textarea
+    attributes:
+      label: ⚠️ デメリット
+      description: 注意点や制限、課題などがあれば記述してください
+
+  - type: textarea
+    attributes:
+      label: 🔧 前提条件
+      description: 使用前に必要な知識・環境などがあれば記載してください
+
+  - type: input
+    attributes:
+      label: 🏷 タグ
+      description: `#React #CI_CD` のようにスペース区切りで記述
