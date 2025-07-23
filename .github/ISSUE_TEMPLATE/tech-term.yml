@@ -45,8 +45,3 @@ body:
     attributes:
       label: 🔧 前提条件
       description: 利用に必要な前提知識など
-
-  - type: input
-    attributes:
-      label: 🏷 タグ
-      description: "例: React CI_CD（スペース区切り）"
