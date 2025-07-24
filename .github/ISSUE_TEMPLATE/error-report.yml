@@ -2,14 +2,14 @@ name: エラー記録テンプレート
 description: 遭遇したエラーとその対処方法を記録
 title: "[エラー] "
 labels: [error-log]
-assignees: []
+assignees: mayo-camp
 
 body:
   - type: input
     id: error-title
     attributes:
       label: 🐛 エラー名 / 現象名
-      placeholder: 例: Module not found: Can't resolve 'react'
+      placeholder: "例: Module not found: Can't resolve 'react'"
 
   - type: textarea
     id: error-message

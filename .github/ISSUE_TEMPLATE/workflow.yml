@@ -2,7 +2,7 @@ name: 作業手順テンプレート
 description: 作業のステップ・記録用テンプレート
 title: "[作業] "
 labels: [workflow]
-assignees: []
+assignees: mayo-camp
 
 body:
   - type: textarea

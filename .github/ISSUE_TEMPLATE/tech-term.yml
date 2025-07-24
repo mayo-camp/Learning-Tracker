@@ -2,7 +2,7 @@ name: 技術用語テンプレート
 description: 技術用語や技術要素の記録用
 title: "[用語] "
 labels: [tech-term]
-assignees: []
+assignees: mayo-camp
 
 body:
   - type: textarea
